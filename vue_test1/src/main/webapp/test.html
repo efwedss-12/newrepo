@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="a">
+{{obj.id}} / {{obj.pwd}} / {{obj.name}} / {{obj.email}}
+
+	<h3>메세지 목록</h3>
+	<ul>
+	  <li v-for="m in list" :key="m.num">
+	  	{{m.num}} / {{m.writer}} /	{{m.content}}
+	  </li>	
+	</ul>
+
+</div>
+<script type="text/javascript">
+new Vue({
+	el:"#a",
+	data:{
+		obj:{id:"asd", pwd:"1234", name:"jone", email:"aa@aa.com"},
+		list:[]
+	},
+	created:function(){ //시작하자마자 실행되는 함수, 초기화 함수
+		const self = this;
+		axios.get('http://localhost:8888/msgs')//ajax 요청
+		.then(function(res){//ajax응답 받으면 실행, 서버의 응답 데이터는 함수 파라미터(res)로 받음
+			alert(res.status);//res 속성:status(응답상태코드. "200"은 정상), data(서버가 보낸 응답)
+			if(res.status==200){
+				self.list = res.data.list;
+			}else{
+				alert("fail");	
+			}				
+		});
+	}
+});
+</script>
+</body>
+</html>

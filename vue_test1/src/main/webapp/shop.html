@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+	<h3>메세지 프로그램</h3>
+	<p>
+	  <router-link to="/join">회원가입</router-link>
+	  <router-link to="/login">로그인</router-link>
+	  <router-link to="/myinfo">내정보</router-link>
+	</p>
+	<router-view></router-view> <!-- 라우터내용을 출력 -->
+</div>
+<script src="app.js"></script>
+</body>
+</html>
